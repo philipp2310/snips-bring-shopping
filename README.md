@@ -20,7 +20,7 @@ The first one is your unique user ID, the second one is the unique ID of your sh
 You can get these here after you fill in your credentials: https://api.getbring.com/rest/bringlists?email=<mail-adress>&password=<password>
 
 ## Usage
-###Deutsch:
+### Deutsch:
 
 Add:
 Hey Snips, schreibe Mehl auf meine Einkaufsliste
