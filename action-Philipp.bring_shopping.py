@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import ConfigParser
+from BringApi import BringApi
 from hermes_python.hermes import Hermes
 from hermes_python.ontology import *
 import sys
