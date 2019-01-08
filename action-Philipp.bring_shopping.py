@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import ConfigParser
+import importlib
 from BringApi import BringApi
 from hermes_python.hermes import Hermes
 from hermes_python.ontology import *
@@ -39,14 +40,46 @@ def action_wrapper(hermes, intentMessage, conf):
      
     Refer to the documentation for further details. 
     """
-    myKeep = Keep(conf['secret']['gkeep_user'],conf['secret']['gkeep_app_password'])
     if intentMessage.intent.intent_name == "Philipp:addItem_bringshop":
         hermes.publish_end_session(intentMessage.session_id, addItem(hermes,intentMessage,conf))
     elif intentMessage.intent.intent_name == "Philipp:deleteItem_bringshop":
         hermes.publish_end_session(intentMessage.session_id, deleteItem(hermes,intentMessage,conf))
+
+def addItemList(bring, items):
+    list = bring.get_items()['purchase']
+    added = []
+    exist = []
+    for item in items:
+        if not any(entr['name'] == item.value for entr in list):
+            bring.purchase_item(item.value, "")
+            added.append(item.value)
+        else:
+            exist.append(item.value)
+    return added, exist
         
 def addItem(hermes,intentMessage,conf):
-    return "wurde zur Einkaufsliste hinzugefügt!"
+    strout = ""
+    if len(intentMessage.slots.item) > 0:
+        added, exist = addItemList(BringApi(conf['secret']['uuid'],conf['secret']['bringlistuuid']), intentMessage.slots.all())
+        if added:
+            # concatenate all but the last separated by ", "
+            if len(added) > 1:
+                str_temp = random.choice(i18n.ADD_START_LOT).format(first=", ".join(added[:-1]), last=added[-1])
+            else:
+                str_temp = random.choice(i18n.ADD_START_ONE).format(added[0])
+            response = str_temp + random.choice(i18n.ADD_END)
+            response += random.choice(i18n.ADD_F_START) if exist else random.choice(i18n.ADD_CLOSE)
+            #, aber A, B und C waren bereits auf der Liste vorhanden
+        if exist:
+            if len(exist) > 1:
+                str_temp = random.choice(i18n.ADD_F_START_LOT).format(first=", ".join(duplicates[:-1]), last=duplicates[-1])
+            else:
+                str_temp = random.choice(i18n.ADD_F_START_ONE).format(duplicates[0])
+            response += str_temp + random.choice(i18n.ADD_F_END)
+    else:
+        strout = random.choice(i18n.ADD_WHAT)
+        
+    return strout
 
 def deleteItem(hermes,intentMessage,conf):
     return "wurde von der Einkaufsliste gelöscht!"
@@ -54,5 +87,9 @@ def deleteItem(hermes,intentMessage,conf):
 if __name__ == "__main__":
     reload(sys)
     sys.setdefaultencoding('utf-8')
+    with open("/usr/share/snips/assistant/assistant.json") as json_file:
+            language = json.load(json_file)["language"]
+    i18n = importlib.import_module("translations." + language)
+
     with Hermes("localhost:1883") as h:
         h.subscribe_intents(subscribe_intent_callback).start()
