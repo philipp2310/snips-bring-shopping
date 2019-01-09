@@ -3,7 +3,7 @@
 
 import ConfigParser
 import importlib
-from BringApi import BringApi
+from BringApi import BringApi.BringApi
 from hermes_python.hermes import Hermes
 from hermes_python.ontology import *
 import io
