@@ -39,7 +39,7 @@ def action_wrapper(hermes, intentMessage, conf):
         hermes.publish_end_session(intentMessage.session_id, deleteItem(hermes,intentMessage,conf))
 
 def addItemList(bring, items):
-    list = bring.get_items()['purchase']
+    list = bring.get_items().json()['purchase']
     added = []
     exist = []
     for item in items:
