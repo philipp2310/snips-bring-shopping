@@ -4,6 +4,9 @@
 # German Translation
 # Add inside of the brackets any possible sentence - but be aware: every combination might occure!
 ###
+### Intents
+INTENT_ADD_ITEM = "Philipp:addItem_bringshop"
+INTENT_DEL_ITEM = "Philipp:deleteItem_bringshop"
 
 ### Add items
 # {first} und {last} wurden zur Einkaufsliste hinzugefügt

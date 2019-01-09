@@ -33,9 +33,9 @@ def subscribe_intent_callback(hermes, intentMessage):
 
 
 def action_wrapper(hermes, intentMessage, conf):
-    if intentMessage.intent.intent_name == "Philipp:addItem_bringshop":
+    if intentMessage.intent.intent_name == i18n.INTENT_ADD_ITEM:
         hermes.publish_end_session(intentMessage.session_id, addItem(hermes,intentMessage,conf))
-    elif intentMessage.intent.intent_name == "Philipp:deleteItem_bringshop":
+    elif intentMessage.intent.intent_name == i18n.INTENT_DEL_ITEM:
         hermes.publish_end_session(intentMessage.session_id, deleteItem(hermes,intentMessage,conf))
 
 def addItemList(bring, items):
@@ -52,7 +52,7 @@ def addItemList(bring, items):
         
 def addItem(hermes,intentMessage,conf):
     strout = ""
-    if len(intentMessage.slots.item) > 0:
+    if len(intentMessage.slots.Item) > 0:
         added, exist = addItemList(BringApi(conf['secret']['uuid'],conf['secret']['bringlistuuid']), intentMessage.slots.all())
         if added:
             strout = text_list(added, i18n.ADD_START_LOT, i18n.ADD_START_ONE, i18n.ADD_END)
