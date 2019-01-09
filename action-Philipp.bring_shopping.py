@@ -56,7 +56,7 @@ def addItem(hermes,intentMessage,conf):
         added, exist = addItemList(BringApi(conf['secret']['uuid'],conf['secret']['bringlistuuid']), intentMessage.slots.Item.all())
         if added:
             strout = text_list(added, i18n.ADD_START_LOT, i18n.ADD_START_ONE, i18n.ADD_END)
-            strout += random.choice(i18n.ADD_F_START) if exist else random.choice(i18n.ADD_CLOSE) + " "
+            strout += random.choice(i18n.ADD_F_START) + " " if exist else random.choice(i18n.ADD_CLOSE)
         if exist:
             strout += text_list(exist, i18n.ADD_F_START_LOT, i18n.ADD_F_START_ONE, i18n.ADD_F_END)
     else:
