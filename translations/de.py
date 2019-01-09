@@ -1,3 +1,5 @@
+#!/usr/bin/env python2
+# -*- coding: utf-8 -*-
 ###
 # German Translation
 # Add inside of the brackets any possible sentence - but be aware: every combination might occure!
