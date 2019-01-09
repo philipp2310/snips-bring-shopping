@@ -26,7 +26,6 @@ def read_configuration_file(configuration_file):
         return dict()
 
 def subscribe_intent_callback(hermes, intentMessage):
-    conf = read_configuration_file(CONFIG_INI)
     action_wrapper(hermes, intentMessage, conf)
 
 
@@ -87,6 +86,7 @@ def deleteItem(hermes,intentMessage,conf):
 if __name__ == "__main__":
     reload(sys)
     sys.setdefaultencoding('utf-8')
+    conf = read_configuration_file(CONFIG_INI)
     with open("/usr/share/snips/assistant/assistant.json") as json_file:
             language = json.load(json_file)["language"]
     i18n = importlib.import_module("translations." + language)
