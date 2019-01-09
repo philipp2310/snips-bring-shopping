@@ -6,6 +6,8 @@ import importlib
 from BringApi import BringApi
 from hermes_python.hermes import Hermes
 from hermes_python.ontology import *
+import io
+import random
 import sys
 
 CONFIGURATION_ENCODING_FORMAT = "utf-8"
