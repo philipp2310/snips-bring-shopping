@@ -9,6 +9,7 @@ from hermes_python.ontology import *
 import io
 import random
 import sys
+import json
 
 CONFIGURATION_ENCODING_FORMAT = "utf-8"
 CONFIG_INI = "config.ini"
