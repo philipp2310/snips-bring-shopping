@@ -30,15 +30,6 @@ def subscribe_intent_callback(hermes, intentMessage):
 
 
 def action_wrapper(hermes, intentMessage, conf):
-    """ Write the body of the function that will be executed once the intent is recognized. 
-    In your scope, you have the following objects : 
-    - intentMessage : an object that represents the recognized intent
-    - hermes : an object with methods to communicate with the MQTT bus following the hermes protocol. 
-    - conf : a dictionary that holds the skills parameters you defined. 
-      To access global parameters use conf['global']['parameterName']. For end-user parameters use conf['secret']['parameterName'] 
-     
-    Refer to the documentation for further details. 
-    """
     if intentMessage.intent.intent_name == "Philipp:addItem_bringshop":
         hermes.publish_end_session(intentMessage.session_id, addItem(hermes,intentMessage,conf))
     elif intentMessage.intent.intent_name == "Philipp:deleteItem_bringshop":
@@ -61,24 +52,26 @@ def addItem(hermes,intentMessage,conf):
     if len(intentMessage.slots.item) > 0:
         added, exist = addItemList(BringApi(conf['secret']['uuid'],conf['secret']['bringlistuuid']), intentMessage.slots.all())
         if added:
-            # concatenate all but the last separated by ", "
-            if len(added) > 1:
-                str_temp = random.choice(i18n.ADD_START_LOT).format(first=", ".join(added[:-1]), last=added[-1])
-            else:
-                str_temp = random.choice(i18n.ADD_START_ONE).format(added[0])
-            response = str_temp + random.choice(i18n.ADD_END)
-            response += random.choice(i18n.ADD_F_START) if exist else random.choice(i18n.ADD_CLOSE)
-            #, aber A, B und C waren bereits auf der Liste vorhanden
+            strout = text_list(added, i18n.ADD_START_LOT, i18n.ADD_START_ONE, i18n.ADD_END)
+            strout += random.choice(i18n.ADD_F_START) if exist else random.choice(i18n.ADD_CLOSE)
         if exist:
-            if len(exist) > 1:
-                str_temp = random.choice(i18n.ADD_F_START_LOT).format(first=", ".join(duplicates[:-1]), last=duplicates[-1])
-            else:
-                str_temp = random.choice(i18n.ADD_F_START_ONE).format(duplicates[0])
-            response += str_temp + random.choice(i18n.ADD_F_END)
+            strout += text_list(exist, i18n.ADD_F_START_LOT, i18n.ADD_F_START_ONE, i18n.ADD_F_END))
     else:
         strout = random.choice(i18n.ADD_WHAT)
-        
     return strout
+
+# create response of pattern:
+# XXX, XXX and XXX have been added. {lot} {end}
+# XXX has been added. {one} {end}
+def text_list(itemlist, lot, one, end):
+    response = ""
+    if len(itemlist) > 1:
+                str_temp = random.choice(lot).format(first=", ".join(itemlist[:-1]), last=itemlist[-1])
+            else:
+                str_temp = random.choice(one).format(itemlist[0])
+            response = str_temp + random.choice(end)
+    return response
+
 
 def deleteItem(hermes,intentMessage,conf):
     return "wurde von der Einkaufsliste gelöscht!"
