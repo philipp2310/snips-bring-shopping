@@ -2,4 +2,3 @@
 hermes-python>=0.1
 BringApi
 requests
-json
