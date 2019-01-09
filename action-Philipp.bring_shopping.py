@@ -55,7 +55,7 @@ def addItem(hermes,intentMessage,conf):
             strout = text_list(added, i18n.ADD_START_LOT, i18n.ADD_START_ONE, i18n.ADD_END)
             strout += random.choice(i18n.ADD_F_START) if exist else random.choice(i18n.ADD_CLOSE)
         if exist:
-            strout += text_list(exist, i18n.ADD_F_START_LOT, i18n.ADD_F_START_ONE, i18n.ADD_F_END))
+            strout += text_list(exist, i18n.ADD_F_START_LOT, i18n.ADD_F_START_ONE, i18n.ADD_F_END)
     else:
         strout = random.choice(i18n.ADD_WHAT)
     return strout
