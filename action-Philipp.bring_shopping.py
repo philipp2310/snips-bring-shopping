@@ -64,12 +64,11 @@ def addItem(hermes,intentMessage,conf):
 # XXX, XXX and XXX have been added. {lot} {end}
 # XXX has been added. {one} {end}
 def text_list(itemlist, lot, one, end):
-    response = ""
     if len(itemlist) > 1:
-                str_temp = random.choice(lot).format(first=", ".join(itemlist[:-1]), last=itemlist[-1])
-            else:
-                str_temp = random.choice(one).format(itemlist[0])
-            response = str_temp + random.choice(end)
+        response = random.choice(lot).format(first=", ".join(itemlist[:-1]), last=itemlist[-1])
+    else:
+        response = random.choice(one).format(itemlist[0])
+    response = str_temp + random.choice(end)
     return response
 
 
