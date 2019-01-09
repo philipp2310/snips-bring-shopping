@@ -49,6 +49,18 @@ def addItemList(bring, items):
         else:
             exist.append(item.value)
     return added, exist
+
+def remItemList(bring, items):
+    list = bring.get_items().json()['purchase']
+    removed = []
+    exist = []
+    for item in items:
+        if not any(entr['name'] == item.value for entr in list):
+            bring.recent_item(item.value)
+            removed.append(item.value)
+        else:
+            exist.append(item.value)
+    return removed, exist
         
 def addItem(hermes,intentMessage,conf):
     strout = ""
@@ -78,7 +90,7 @@ def text_list(itemlist, lot, one, end):
 def deleteItem(hermes,intentMessage,conf):
     strout = ""
     if len(intentMessage.slots.Item) > 0:
-        removed, exist = addItemList(BringApi(conf['secret']['uuid'],conf['secret']['bringlistuuid']), intentMessage.slots.Item.all())
+        removed, exist = remItemList(BringApi(conf['secret']['uuid'],conf['secret']['bringlistuuid']), intentMessage.slots.Item.all())
         if removed:
             strout = text_list(removed, i18n.REM_START_LOT, i18n.REM_START_ONE, i18n.REM_END)
             strout += random.choice(i18n.REM_F_START) + " " if exist else random.choice(i18n.REM_CLOSE)
