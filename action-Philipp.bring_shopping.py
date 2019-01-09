@@ -55,7 +55,7 @@ def remItemList(bring, items):
     removed = []
     exist = []
     for item in items:
-        if not any(entr['name'] == item.value for entr in list):
+        if any(entr['name'] == item.value for entr in list):
             bring.recent_item(item.value)
             removed.append(item.value)
         else:
