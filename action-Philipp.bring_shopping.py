@@ -71,7 +71,7 @@ def text_list(itemlist, lot, one, end):
         response = random.choice(lot).format(first=", ".join(itemlist[:-1]), last=itemlist[-1])
     else:
         response = random.choice(one).format(first=itemlist[0])
-    response = str_temp + random.choice(end)
+    response += random.choice(end)
     return response
 
 
