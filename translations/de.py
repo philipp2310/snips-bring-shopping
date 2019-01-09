@@ -61,3 +61,6 @@ REM_F_END = ["nicht vorhanden",
 
 #. (close sentence off for correct pronounciation, eg "." or "!")
 REM_CLOSE = [".", "!"]
+
+REM_WHAT = ["Ich weiß nicht was ich von der Einkaufsliste streichen soll.",
+            "Ich habe nichts vom Einkaufszettel gelöscht."]
