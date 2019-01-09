@@ -76,7 +76,17 @@ def text_list(itemlist, lot, one, end):
 
 
 def deleteItem(hermes,intentMessage,conf):
-    return "wurde von der Einkaufsliste gelöscht!"
+    strout = ""
+    if len(intentMessage.slots.Item) > 0:
+        removed, exist = addItemList(BringApi(conf['secret']['uuid'],conf['secret']['bringlistuuid']), intentMessage.slots.Item.all())
+        if removed:
+            strout = text_list(removed, i18n.REM_START_LOT, i18n.REM_START_ONE, i18n.REM_END)
+            strout += random.choice(i18n.REM_F_START) + " " if exist else random.choice(i18n.REM_CLOSE)
+        if exist:
+            strout += text_list(exist, i18n.REM_F_START_LOT, i18n.REM_F_START_ONE, i18n.REM_F_END)
+    else:
+        strout = random.choice(i18n.REM_WHAT)
+    return strout
 
 if __name__ == "__main__":
     reload(sys)
