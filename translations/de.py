@@ -10,7 +10,7 @@ INTENT_DEL_ITEM = "Philipp:deleteItem_bringshop"
 
 # {XXX, XXX, XXX} und XXX
 GENERAL_LIST = ["{first} und {last}",
-                "{first} so wie {last}]
+                "{first} so wie {last}"]
                 
 # Auf deiner Einkaufsliste steht {XXX, XXX und XXX}
 READ_LOT = ["Auf deiner Einkaufsliste steht {list}",
