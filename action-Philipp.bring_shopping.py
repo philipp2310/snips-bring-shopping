@@ -40,7 +40,7 @@ def action_wrapper(hermes, intentMessage, conf):
     elif intentMessage.intent.intent_name == i18n.INTENT_READ_LIST:
         hermes.publish_end_session(intentMessage.session_id, readList(conf))
     elif intentMessage.intent.intent_name == i18n.INTENT_CHECK_LIST:
-        hermes.publish_end_session(intentMessage.session_id, readList(hermes,intentMessage,conf))
+        hermes.publish_end_session(intentMessage.session_id, checkList(hermes,intentMessage,conf))
 
 
 def checkList(hermes,intentMessage,conf):
