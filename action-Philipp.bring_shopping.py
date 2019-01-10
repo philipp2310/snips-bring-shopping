@@ -44,11 +44,11 @@ def action_wrapper(hermes, intentMessage, conf):
 def readList(conf):
     items = BringApi(conf['secret']['uuid'],conf['secret']['bringlistuuid']).get_items().json()['purchase']
     if len(items) > 1:
-        random.choice(i18n.READ_LOT).format(list=random.choice(i18n.GENERAL_LIST).format(first=", ".join([i['name'] for i in items[:-1]]), last=items[-1]['name']))
+        return random.choice(i18n.READ_LOT).format(list=random.choice(i18n.GENERAL_LIST).format(first=", ".join([i['name'] for i in items[:-1]]), last=items[-1]['name']))
     elif len(items) == 1:
-        random.choice(i18n.READ_ONE).format(list=items[0]['name'])
+        return random.choice(i18n.READ_ONE).format(list=items[0]['name'])
     else:
-        random.choice(i18n.READ_NONE)
+        return random.choice(i18n.READ_NONE)
         
 
 def addItemList(bring, items):
