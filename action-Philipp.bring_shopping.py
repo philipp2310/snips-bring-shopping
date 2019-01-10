@@ -61,6 +61,7 @@ def checkList(hermes,intentMessage,conf):
             strout += random.choice(i18n.CHK_F_START) + " " if missing else random.choice(i18n.CHK_CLOSE)
         if missing:
             strout += text_list(missing, i18n.CHK_F_START_LOT, i18n.CHK_F_START_ONE, i18n.CHK_F_END)
+        return strout
 
 # Du hast xxx, xxx und xxx auf deiner Einkaufsliste
 def readList(conf):
