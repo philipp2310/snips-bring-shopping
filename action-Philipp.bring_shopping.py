@@ -49,6 +49,7 @@ def checkList(hermes,intentMessage,conf):
         check = intentMessage.slots.Item.all()
         found = []
         missing = []
+        strout = ""
         for c in check:
             if any(c.value == i['name'] for i in items):
                 found.append(c.value)
