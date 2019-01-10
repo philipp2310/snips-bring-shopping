@@ -39,6 +39,27 @@ def action_wrapper(hermes, intentMessage, conf):
         hermes.publish_end_session(intentMessage.session_id, deleteItem(hermes,intentMessage,conf))
     elif intentMessage.intent.intent_name == i18n.INTENT_READ_LIST:
         hermes.publish_end_session(intentMessage.session_id, readList(conf))
+    elif intentMessage.intent.intent_name == i18n.INTENT_CHECK_LIST:
+        hermes.publish_end_session(intentMessage.session_id, readList(hermes,intentMessage,conf))
+
+
+def checkList(hermes,intentMessage,conf):
+    if len(intentMessage.slots.Item) > 0:
+        items = BringApi(conf['secret']['uuid'],conf['secret']['bringlistuuid']).get_items().json()['purchase']
+        check = intentMessage.slots.Item.all()
+        found = []
+        missing = []
+        for c in check:
+            if any(i['name'] == c['name']  i in items):
+                found.append(c['name'])
+            else:
+                missing.append(c['name'])
+                #todo,add?
+        if found:
+            strout = text_list(added, i18n.CHK_START_LOT, i18n.CHK_START_ONE, i18n.CHK_END)
+            strout += random.choice(i18n.CHK_F_START) + " " if exist else random.choice(i18n.CHK_CLOSE)
+        if missing:
+            strout += text_list(exist, i18n.CHK_F_START_LOT, i18n.CHK_F_START_ONE, i18n.CHK_F_END)
 
 # Du hast xxx, xxx und xxx auf deiner Einkaufsliste
 def readList(conf):

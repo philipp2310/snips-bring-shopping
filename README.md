@@ -6,7 +6,7 @@ With Bring! your list will be available on Android, iOs and via Web Access.
 ## Featuers
 - Add Item(s) ✓
 - Remove Item(s) ✓
-- Read shopping List
+- Read shopping List ✓
 - Ask for Item on List
 
 ## Planned Features:

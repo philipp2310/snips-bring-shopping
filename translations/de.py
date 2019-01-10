@@ -8,6 +8,7 @@
 INTENT_ADD_ITEM = "Philipp:addItem_bringshop"
 INTENT_DEL_ITEM = "Philipp:deleteItem_bringshop"
 INTENT_READ_LIST = "Philipp:readList_bringshop"
+INTENT_CHECK_LIST = "Philipp:checkList_bringshop"
 
 # {XXX, XXX, XXX} und XXX
 GENERAL_LIST = ["{first} und {last}",
@@ -81,3 +82,29 @@ REM_CLOSE = [".", "!"]
 
 REM_WHAT = ["Ich weiß nicht was ich von der Einkaufsliste streichen soll.",
             "Ich habe nichts vom Einkaufszettel gelöscht."]
+
+### Check items
+# {first} und {last} sind auf der  Einkaufsliste vorhanden
+# {XXX, XXX} und XXX sind auf der Einkaufsliste vorhanden
+CHK_START_LOT = ["{first} und {last} sind",
+                 "{first} so wie {last} sind"]
+# {first} ist auf der Einkaufsliste vorhanden
+# XXX wurde zur Einkaufsliste hinzugefügt
+CHK_START_ONE = ["{first} ist"]
+
+CHK_END = ["auf der Einkaufsliste vorhanden",
+           "auf der Einkaufsliste",
+           "auf dem Einkaufszettel vorhanden",
+           "auf deiner Einkaufsliste"]
+
+#. (close sentence off for correct pronounciation, eg "." or "!")
+#not inserted if sentence continues with exclusions:
+CHK_CLOSE = [".", "!"]
+
+#, aber YYY, YYY und YYY waren bereits vorhanden
+CHK_F_START = [", aber"]
+CHK_F_START_LOT = ["{first} und {last} sind"
+                   "{first} so wie {last} sind"]
+CHK_F_START_ONE = ["{first} ist"]
+CHK_F_END = ["nicht auf der Liste.",
+             "nicht auf dem Einkaufszettel."]
