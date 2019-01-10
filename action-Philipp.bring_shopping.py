@@ -43,7 +43,7 @@ def readList(bring, conf):
     items = BringApi(conf['secret']['uuid'],conf['secret']['bringlistuuid']).get_items()['purchased']
     if len(items) > 1:
         random.choice(i18n.READ_LOT).format(list=random.choice(i18n.GENERAL_LIST).format(first=", ".join([i['name'] for i in items[:-1]]), last=items[-1]['name']))
-    else if len(items) = 1:
+    elif len(items) = 1:
         random.choice(i18n.READ_ONE).format(list=items[0]['name'])
     else:
         random.choice(i18n.READ_NONE)
