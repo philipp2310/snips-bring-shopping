@@ -50,7 +50,7 @@ def checkList(hermes,intentMessage,conf):
         found = []
         missing = []
         for c in check:
-            if any(i['name'] == c['name']  i in items):
+            if any(i['name'] == c['name'] for i in items):
                 found.append(c['name'])
             else:
                 missing.append(c['name'])
