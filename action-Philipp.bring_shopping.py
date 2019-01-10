@@ -38,7 +38,7 @@ def action_wrapper(hermes, intentMessage, conf):
     elif intentMessage.intent.intent_name == i18n.INTENT_DEL_ITEM:
         hermes.publish_end_session(intentMessage.session_id, deleteItem(hermes,intentMessage,conf))
 
-" Du hast xxx, xxx und xxx auf deiner Einkaufsliste
+# Du hast xxx, xxx und xxx auf deiner Einkaufsliste
 def readList(bring, conf):
     items = BringApi(conf['secret']['uuid'],conf['secret']['bringlistuuid']).get_items()['purchased']
     if len(items) > 1:
