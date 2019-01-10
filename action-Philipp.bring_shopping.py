@@ -37,6 +37,8 @@ def action_wrapper(hermes, intentMessage, conf):
         hermes.publish_end_session(intentMessage.session_id, addItem(hermes,intentMessage,conf))
     elif intentMessage.intent.intent_name == i18n.INTENT_DEL_ITEM:
         hermes.publish_end_session(intentMessage.session_id, deleteItem(hermes,intentMessage,conf))
+    elif intentMessage.intent.intent_name == i18n.INTENT_READ_LIST:
+        hermes.publish_end_session(intentMessage.session_id, readList(hermes,intentMessage,conf))
 
 # Du hast xxx, xxx und xxx auf deiner Einkaufsliste
 def readList(bring, conf):

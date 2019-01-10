@@ -7,6 +7,7 @@
 ### Intents
 INTENT_ADD_ITEM = "Philipp:addItem_bringshop"
 INTENT_DEL_ITEM = "Philipp:deleteItem_bringshop"
+INTENT_READ_LIST = "Philipp:readList_bringshop"
 
 # {XXX, XXX, XXX} und XXX
 GENERAL_LIST = ["{first} und {last}",
