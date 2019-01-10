@@ -8,6 +8,22 @@
 INTENT_ADD_ITEM = "Philipp:addItem_bringshop"
 INTENT_DEL_ITEM = "Philipp:deleteItem_bringshop"
 
+# {XXX, XXX, XXX} und XXX
+GENERAL_LIST = ["{first} und {last}",
+                "{first} so wie {last}]
+                
+# Auf deiner Einkaufsliste steht {XXX, XXX und XXX}
+READ_LOT = ["Auf deiner Einkaufsliste steht {list}",
+            "Du hast {list} auf deiner Einkaufsliste stehen",
+            "{list} stehen auf deiner Einkaufsliste"]
+READ_ONE = ["Auf deiner Einkaufsliste steht {list}",
+            "Du hast nur {list} auf deiner Einkaufsliste stehen",
+            "Ausser {list} steht nichts auf dem Einkaufszettel"]
+
+READ_NONE = ["Du hast nichts auf deiner Einkaufsliste",
+             "Deine Einkaufsliste ist leer",
+             "Es steht nichts auf der Einkaufsliste",
+             "Du hast noch nichts auf deiner Einkaufsliste"]
 ### Add items
 # {first} und {last} wurden zur Einkaufsliste hinzugefügt
 # {XXX, XXX} und XXX wurden zur Einkaufsliste hinzugefügt

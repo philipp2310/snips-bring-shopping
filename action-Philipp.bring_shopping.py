@@ -38,6 +38,17 @@ def action_wrapper(hermes, intentMessage, conf):
     elif intentMessage.intent.intent_name == i18n.INTENT_DEL_ITEM:
         hermes.publish_end_session(intentMessage.session_id, deleteItem(hermes,intentMessage,conf))
 
+" Du hast xxx, xxx und xxx auf deiner Einkaufsliste
+def readList(bring, conf):
+    items = BringApi(conf['secret']['uuid'],conf['secret']['bringlistuuid']).get_items()['purchased']
+    if len(items) > 1:
+        random.choice(i18n.READ_LOT).format(list=random.choice(i18n.GENERAL_LIST).format(first=", ".join([i['name'] for i in items[:-1]]), last=items[-1]['name']))
+    else if len(items) = 1:
+        random.choice(i18n.READ_ONE).format(list=items[0]['name'])
+    else:
+        random.choice(i18n.READ_NONE)
+        
+
 def addItemList(bring, items):
     list = bring.get_items().json()['purchase']
     added = []
@@ -76,8 +87,8 @@ def addItem(hermes,intentMessage,conf):
     return strout
 
 # create response of pattern:
-# XXX, XXX and XXX have been added. {lot} {end}
-# XXX has been added. {one} {end}
+# XXX, XXX and XXX have been added. = {lot} {end}
+# XXX has been added. = {one} {end}
 def text_list(itemlist, lot, one, end):
     if len(itemlist) > 1:
         response = random.choice(lot).format(first=", ".join(itemlist[:-1]), last=itemlist[-1])
