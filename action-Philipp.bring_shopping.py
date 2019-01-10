@@ -50,10 +50,10 @@ def checkList(hermes,intentMessage,conf):
         found = []
         missing = []
         for c in check:
-            if any(i['name'] == c['name'] for i in items):
-                found.append(c['name'])
+            if any(c.value == i['name'] for i in items):
+                found.append(c.value)
             else:
-                missing.append(c['name'])
+                missing.append(c.value)
                 #todo,add?
         if found:
             strout = text_list(added, i18n.CHK_START_LOT, i18n.CHK_START_ONE, i18n.CHK_END)
