@@ -57,10 +57,10 @@ def checkList(hermes,intentMessage,conf):
                 missing.append(c.value)
                 #todo,add?
         if found:
-            strout = text_list(added, i18n.CHK_START_LOT, i18n.CHK_START_ONE, i18n.CHK_END)
-            strout += random.choice(i18n.CHK_F_START) + " " if exist else random.choice(i18n.CHK_CLOSE)
+            strout = text_list(found, i18n.CHK_START_LOT, i18n.CHK_START_ONE, i18n.CHK_END)
+            strout += random.choice(i18n.CHK_F_START) + " " if missing else random.choice(i18n.CHK_CLOSE)
         if missing:
-            strout += text_list(exist, i18n.CHK_F_START_LOT, i18n.CHK_F_START_ONE, i18n.CHK_F_END)
+            strout += text_list(missing, i18n.CHK_F_START_LOT, i18n.CHK_F_START_ONE, i18n.CHK_F_END)
 
 # Du hast xxx, xxx und xxx auf deiner Einkaufsliste
 def readList(conf):
