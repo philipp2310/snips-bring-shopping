@@ -103,7 +103,7 @@ CHK_CLOSE = [".", "!"]
 
 #, aber YYY, YYY und YYY waren bereits vorhanden
 CHK_F_START = [", aber"]
-CHK_F_START_LOT = ["{first} und {last} sind"
+CHK_F_START_LOT = ["{first} und {last} sind",
                    "{first} so wie {last} sind"]
 CHK_F_START_ONE = ["{first} ist"]
 CHK_F_END = ["nicht auf der Liste.",

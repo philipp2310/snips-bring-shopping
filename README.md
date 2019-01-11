@@ -2,6 +2,9 @@
 
 Connect your SNIPS Assistant to your Bring! shopping list!
 With Bring! your list will be available on Android, iOs and via Web Access.
+## Languages
+- German ✓
+- English ~ (translated, but not in store)
 
 ## Featuers
 - Add Item(s) ✓
@@ -24,7 +27,7 @@ You can get these here after you fill in your credentials: https://api.getbring.
 
 Add:  
 Hey Snips, schreibe Mehl auf meine Einkaufsliste  
-Hey Snips, bitte füge 3 Eier zum Einkaufszettel hinzu  
+Hey Snips, bitte füge Eier zum Einkaufszettel hinzu  
 
 Remove:  
 Hey Snips, streiche Mehl von meiner Einkaufsliste  
@@ -35,12 +38,12 @@ Hey Snips, les mir meine Einkaufsliste vor
 Ask:  
 Hey Snips, habe ich Kartoffeln schon auf meiner Einkaufsliste?  
 
-(planned) Change Quantity:  
+(idea) Change Quantity:  
 Hey Snips, füge zwei Kästen Bier zu meiner Liste hinzu  
 - Es befinden sich bereits zwei Kästen Bier auf deiner Liste, soll ich "zwei Kästen" hinzufügen?  
 Ja/Nein, mach insgesamt 3 Kästen.  
 
-(planned) Add List:  
+(idea) Add List:  
 Hey Snips, schreibe alles für Pizza Hawaii auf meine Einkaufsliste  
 - Ok, ich füge hinzu:
 - Mehl, 400g  
@@ -54,7 +57,7 @@ Nein/Stop -> Ok, kein Mehl
 Ja/Stop -> Ok, ich setze Salz auf die Einkaufsliste  
 - Wasser
 
-(planned) Show List:  
+(idea) Show List:  
 Hey Snips, zeige mir meine Einkaufsliste  
 - <keine Antwort, Anzeige auf Display>  
 
