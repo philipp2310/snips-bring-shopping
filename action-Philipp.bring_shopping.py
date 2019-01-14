@@ -134,6 +134,8 @@ def combine_lists(str_first, str_conn, str_end, str_second, first, second):
 ### Combine entries of list into wrapper sentence
 def get_text_for_list(str,list):
     category, strout = get_default_list(list)
+    print(str)
+    print(category)
     return random.choice(str[category]).format(strout)
 
 ### Return if MULTI or ONE entry and creates list for multi ( XXX, XXX and XXX )
