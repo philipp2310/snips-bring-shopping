@@ -116,6 +116,7 @@ def read_list(conf):
 # first+END
 # second
 def combine_lists(str_first, str_conn, str_end, str_second, first, second):
+    strout = ""
     if first:
         strout = get_text_for_list(str_first, first)
     if second:
