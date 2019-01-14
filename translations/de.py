@@ -17,13 +17,13 @@ GENERAL_LIST = ["{first} und {last}",
 
 ### Read List
 ### Sentences that can fit a list (GENERAL_LIST) or a single value
-READ_ANY = ["Auf deiner Einkaufsliste steht {list}"]
+READ_ANY = ["Auf deiner Einkaufsliste steht {}"]
 ### Sentences that can fit only a single value
-READ_ONE = READ_ANY+["Du hast nur {list} auf deiner Einkaufsliste stehen",
-                    "Ausser {list} steht nichts auf dem Einkaufszettel"]
+READ_ONE = READ_ANY+["Du hast nur {} auf deiner Einkaufsliste stehen",
+                    "Ausser {} steht nichts auf dem Einkaufszettel"]
 ### Sentences that can fit a list (GENERAL_LIST)
-READ_MULTI = READ_ANY+["Du hast {list} auf deiner Einkaufsliste stehen",
-                       "{list} stehen auf deiner Einkaufsliste"]
+READ_MULTI = READ_ANY+["Du hast {} auf deiner Einkaufsliste stehen",
+                       "{} stehen auf deiner Einkaufsliste"]
 ### Response for no list
 READ_NONE = ["Du hast nichts auf deiner Einkaufsliste",
              "Deine Einkaufsliste ist leer",
