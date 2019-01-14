@@ -126,6 +126,7 @@ def combine_lists(str_first, str_conn, str_end, str_second, first, second):
     
     if first and second:
         strout = random.choice(str_conn).format(backup,strout)
+    return strout
 
 ### Combine entries of list into wrapper sentence
 def get_text_for_list(str,list):
