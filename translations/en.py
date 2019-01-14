@@ -43,7 +43,7 @@ ADD_MULTI = ADD_ANY + ["{} were written on your shopping list",
 
 #close sentence off for correct pronounciation, eg "." or "!"
 #This has to be separate and is only used if no connection is required!
-ADD_CLOSE = [".", "!"]
+ADD_END = [".", "!"]
 ### Connector between ADD and ADD_F
 ADD_CONN = ["{} , but {}"]
 
@@ -73,7 +73,7 @@ REM_MULTI = REM_ANY+["Ok, {} were removed from the list",
 
 #close sentence off for correct pronounciation, eg "." or "!"
 #This has to be separate and is only used if no connection is required!
-REM_CLOSE = [".", "!"]
+REM_END = [".", "!"]
 ### Connector between ADD and ADD_F
 REM_CONN = ["{} , but {}"]
 
@@ -98,7 +98,7 @@ CHK_MULTI = CHK_ANY+["{} are on the shopping list"]
 
 #close sentence off for correct pronounciation, eg "." or "!"
 #This has to be separate and is only used if no connection is required!
-CHK_CLOSE = [".", "!"]
+CHK_END = [".", "!"]
 ### Connector between ADD and ADD_F
 CHK_CONN = ["{} , but {}"]
 
