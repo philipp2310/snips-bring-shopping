@@ -134,10 +134,10 @@ def get_text_for_list(str,list):
 
 ### Return if MULTI or ONE entry and creates list for multi ( XXX, XXX and XXX )
 def get_default_list(items):
-    if len(itemlist) > 1:
+    if len(items) > 1:
         return "MULTI", random.choice(i18n.GENERAL_LIST).format(first=", ".join(items[:-1]), last=items[-1])
-    elif len(itemlist) == 1:
-        return "ONE", itemlist[0]
+    elif len(items) == 1:
+        return "ONE", items[0]
     else:
         return "NONE", ""
 
