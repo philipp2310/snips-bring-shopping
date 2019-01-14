@@ -13,98 +13,117 @@ INTENT_CHECK_LIST = "Philipp:checkList_bringshop"
 # {XXX, XXX, XXX} und XXX
 GENERAL_LIST = ["{first} und {last}",
                 "{first} so wie {last}"]
-                
-# Auf deiner Einkaufsliste steht {XXX, XXX und XXX}
-READ_LOT = ["Auf deiner Einkaufsliste steht {list}",
-            "Du hast {list} auf deiner Einkaufsliste stehen",
-            "{list} stehen auf deiner Einkaufsliste"]
-READ_ONE = ["Auf deiner Einkaufsliste steht {list}",
-            "Du hast nur {list} auf deiner Einkaufsliste stehen",
-            "Ausser {list} steht nichts auf dem Einkaufszettel"]
 
+
+### Read List
+### Sentences that can fit a list (GENERAL_LIST) or a single value
+READ_ANY = ["Auf deiner Einkaufsliste steht {list}"]
+### Sentences that can fit only a single value
+READ_ONE = READ_ANY+["Du hast nur {list} auf deiner Einkaufsliste stehen",
+                    "Ausser {list} steht nichts auf dem Einkaufszettel"]
+### Sentences that can fit a list (GENERAL_LIST)
+READ_MULTI = READ_ANY+["Du hast {list} auf deiner Einkaufsliste stehen",
+                       "{list} stehen auf deiner Einkaufsliste"]
+### Response for no list
 READ_NONE = ["Du hast nichts auf deiner Einkaufsliste",
              "Deine Einkaufsliste ist leer",
              "Es steht nichts auf der Einkaufsliste",
              "Du hast noch nichts auf deiner Einkaufsliste"]
+
+
 ### Add items
-# {first} und {last} wurden zur Einkaufsliste hinzugefügt
-# {XXX, XXX} und XXX wurden zur Einkaufsliste hinzugefügt
-ADD_START_LOT = ["{first} und {last} wurden",
-                 "{first} so wie {last} wurden"]
-# {first} wurde zur Einkaufsliste hinzugefügt
-# XXX wurde zur Einkaufsliste hinzugefügt
-ADD_START_ONE = ["{first} wurde"]
+### Sentences that can fit a list (GENERAL_LIST) or a single value
+ADD_ANY = ["Ok, ich schreibe {} auf den Einkaufszettel",
+           "Ich habe {} auf den Einkaufszettel geschrieb"]
+### Sentences that can fit only a single value
+ADD_ONE = ADD_ANY + ["{} wurde auf die Einkaufsliste geschrieben",
+                     "{} wurde hinzugefügt"]
+### Sentences that can fit a list (GENERAL_LIST)
+ADD_MULTI = ADD_ANY + ["{} wurden auf die Einkaufsliste geschrieben",
+                       "Ich schreibe folgendes auf die Einkaufsliste: {}"]
 
-ADD_END = ["zur Einkaufsliste hinzugefügt",
-           "hinzugefügt",
-           "auf die Einkaufsliste gesetzt",
-           "auf den Einkaufszettel geschrieben"]
-
-#. (close sentence off for correct pronounciation, eg "." or "!")
-#not inserted if sentence continues with exclusions:
+#close sentence off for correct pronounciation, eg "." or "!"
+#This has to be separate and is only used if no connection is required!
 ADD_CLOSE = [".", "!"]
+### Connector between ADD and ADD_F
+ADD_CONN = ["{} , aber {}"]
 
-#, aber YYY, YYY und YYY waren bereits vorhanden
-ADD_F_START = [", aber"]
-ADD_F_START_LOT = ["{first} und {last} waren"
-                   "{first} so wie {last} waren"]
-ADD_F_START_ONE = ["{first} war"]
-ADD_F_END = ["bereits vorhanden.",
-             "schon auf der Einkaufsliste.",
-             "auf der Einkaufsliste schon vorhanden.",
-             "bereits auf der Einkaufszettel vorhanden."]
+### Sentences that can fit a list (GENERAL_LIST) or a single value
+ADD_F_ANY = ["{} steht schon auf der Liste"]
+### Sentences that can fit only a single value
+ADD_F_ONE = ADD_F_ANY+["{} ist bereits vorhanden",
+                       "{} steht schon auf der Liste"]
+### Sentences that can fit a list (GENERAL_LIST)
+ADD_F_MULTI = ADD_F_ANY+["{} sind bereits vorhanden",
+                         "{} standen schon auf der Liste",
+                         "{} stehen schon auf deiner Einkaufsliste"]
 
+### fallback - should not happen
 ADD_WHAT = ["Ich weiß nicht was ich auf die Einkaufsliste schreiben soll",
             "Ich habe nichts auf den Einkaufszettel geschrieben"]
 
+
 ### Remove Items
-# XXX, XXX und XXX wurden von der Einkaufsliste gestrichen
-REM_START_LOT = ["{first} und {last} wurden",
-                 "{first} so wie {last} wurden"]
-REM_START_ONE = ["{first} wurde"]
-REM_END = ["von der Einkaufsliste gestrichen",
-           "entfernt",
-           "von der Einkaufsliste genommen",
-           "vom Einkaufszettel gelöscht"]
+### Sentences that can fit a list (GENERAL_LIST) or a single value
+REM_ANY = ["Ich habe {} von der Einkaufsliste gestrichen"]
+### Sentences that can fit only a single value
+REM_ONE = REM_ANY+["Ok, {} ist von der Liste gestrichen worden",
+                   "{} wurde von der Einkaufsliste gestrichen"]
+### Sentences that can fit a list (GENERAL_LIST)
+REM_MULTI = REM_ANY+["Ok, {} sind von der Liste gestrichen worden",
+                     "{} wurden von der Einkaufsliste gestrichen"]
 
-#, aber YYY, YYY und YYY waren nicht vorhanden
-REM_F_START = [", aber"]
-REM_F_START_LOT = ["{first} und {last} waren",
-                   "{first} so wie {last} waren"]
-REM_F_START_ONE = ["{first} war"]
-REM_F_END = ["nicht vorhanden",
-             "nicht auf der Liste",
-             "nicht auf dem Einkaufszettel",
-             "nicht auf meiner Einkaufsliste"]
-
-#. (close sentence off for correct pronounciation, eg "." or "!")
+#close sentence off for correct pronounciation, eg "." or "!"
+#This has to be separate and is only used if no connection is required!
 REM_CLOSE = [".", "!"]
+### Connector between ADD and ADD_F
+REM_CONN = ["{} , aber {}"]
 
+### Sentences that can fit a list (GENERAL_LIST) or a single value
+REM_F_ANY = ["ich konnte {} nicht finden."]
+### Sentences that can fit only a single value
+REM_F_ONE = REM_F_ANY+["{} stand nicht auf der Liste."]
+### Sentences that can fit a list (GENERAL_LIST)
+REM_F_MULTI = REM_F_ANY+["{} standen nicht auf der Einkaufsliste."]
+### fallback - should not happen
 REM_WHAT = ["Ich weiß nicht was ich von der Einkaufsliste streichen soll.",
             "Ich habe nichts vom Einkaufszettel gelöscht."]
 
-### Check items
-# {first} und {last} sind auf der  Einkaufsliste vorhanden
-# {XXX, XXX} und XXX sind auf der Einkaufsliste vorhanden
-CHK_START_LOT = ["{first} und {last} sind",
-                 "{first} so wie {last} sind"]
-# {first} ist auf der Einkaufsliste vorhanden
-# XXX wurde zur Einkaufsliste hinzugefügt
-CHK_START_ONE = ["{first} ist"]
 
-CHK_END = ["auf der Einkaufsliste vorhanden",
-           "auf der Einkaufsliste",
-           "auf dem Einkaufszettel vorhanden",
-           "auf deiner Einkaufsliste"]
+### Check Items
+### Sentences that can fit a list (GENERAL_LIST) or a single value
+CHK_ANY = ["Ich habe {} auf der Einkaufsliste gefunden"]
+### Sentences that can fit only a single value
+CHK_ONE = CHK_ANY+["{} steht auf der Einkaufsliste",
+                   "{} befindet sich auf dem Einkaufszettel"]
+### Sentences that can fit a list (GENERAL_LIST)
+CHK_MULTI = CHK_ANY+["{} stehen auf der Einkaufsliste",
+                     "{} stehen auf deinem Einkaufszettel"]
 
-#. (close sentence off for correct pronounciation, eg "." or "!")
-#not inserted if sentence continues with exclusions:
+#close sentence off for correct pronounciation, eg "." or "!"
+#This has to be separate and is only used if no connection is required!
 CHK_CLOSE = [".", "!"]
+### Connector between ADD and ADD_F
+CHK_CONN = ["{} , aber {}"]
 
-#, aber YYY, YYY und YYY waren bereits vorhanden
-CHK_F_START = [", aber"]
-CHK_F_START_LOT = ["{first} und {last} sind",
-                   "{first} so wie {last} sind"]
-CHK_F_START_ONE = ["{first} ist"]
-CHK_F_END = ["nicht auf der Liste.",
-             "nicht auf dem Einkaufszettel."]
+### Sentences that can fit a list (GENERAL_LIST) or a single value
+CHK_F_ANY = ["ich konnte {} nicht finden."]
+### Sentences that can fit only a single value
+CHK_F_ONE = CHK_F_ANY+["{} steht nicht auf der Liste."]
+### Sentences that can fit a list (GENERAL_LIST)
+CHK_F_MULTI = CHK_F_ANY+["{} stehen nicht auf der Einkaufsliste.",
+                         "{} stehen nicht auf deinem Einkaufszettel"]
+### fallback - should not happen
+CHK_WHAT = ["Ich weiß nicht was ich auf der Einkaufsliste suchen soll.",
+            "Ich weiß nicht was ich auf dem Zettel suchen soll."]
+
+
+### DON'T EDIT!
+#Only for technical purpose!
+ADD = ["ONE":ADD_ONE,"MULTI":ADD_MULTI]
+ADD_F = ["ONE":ADD_F_ONE,"MULTI":ADD_F_MULTI]
+REM = ["ONE":REM_ONE,"MULTI":REM_MULTI]
+REM_F = ["ONE":REM_F_ONE,"MULTI":REM_F_MULTI]
+CHK = ["ONE":CHK_ONE,"MULTI":CHK_MULTI]
+CHK_F = ["ONE":CHK_F_ONE,"MULTI":CHK_F_MULTI]
+READ = ["ONE":READ_ONE,"MULTI":READ_MULTI, "NONE":READ_NONE]
