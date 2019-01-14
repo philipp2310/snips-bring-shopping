@@ -107,7 +107,8 @@ def check_list(intentMessage,conf):
 # Du hast xxx, xxx und xxx auf deiner Einkaufsliste
 def read_list(conf):
     items = get_bring(conf).get_items().json()['purchase']
-    return get_text_for_list(i18n.READ, items)
+    list = [ l['name'] for l in items ]
+    return get_text_for_list(i18n.READ, list)
 
 
 #### List/Text operations
