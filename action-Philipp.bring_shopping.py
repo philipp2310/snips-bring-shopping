@@ -84,7 +84,7 @@ def check_list_int(bring,check):
 def add_item(intentMessage,conf):
     if len(intentMessage.slots.Item) > 0:
         added, exist = add_item_int(get_bring(conf), intentMessage.slots.Item.all())
-        return combine_lists(i18n.ADD, i18n.ADD_CONN, i18n.ADD_END i18n.ADD_F, added, exist)
+        return combine_lists(i18n.ADD, i18n.ADD_CONN, i18n.ADD_END, i18n.ADD_F, added, exist)
     else:
         return random.choice(i18n.ADD_WHAT)
 
@@ -92,7 +92,7 @@ def add_item(intentMessage,conf):
 def delete_item(intentMessage,conf):
     if len(intentMessage.slots.Item) > 0:
         removed, failed = delete_item_int(get_bring(conf), intentMessage.slots.Item.all())
-        return combine_lists(i18n.REM, i18n.REM_CONN, i18n.REM_END i18n.REM_F, removed, failed)
+        return combine_lists(i18n.REM, i18n.REM_CONN, i18n.REM_END, i18n.REM_F, removed, failed)
     else:
         return random.choice(i18n.REM_WHAT)
 
@@ -100,7 +100,7 @@ def delete_item(intentMessage,conf):
 def check_list(intentMessage,conf):
     if len(intentMessage.slots.Item) > 0:
         found, missing = check_list_int(get_bring(conf), intentMessage.slots.Item.all())
-        return combine_lists(i18n.CHK, i18n.CHK_CONN, i18n.CHK_END i18n.CHK_F, found, missing)
+        return combine_lists(i18n.CHK, i18n.CHK_CONN, i18n.CHK_END, i18n.CHK_F, found, missing)
     else:
         return random.choice(i18n.CHK_WHAT)
 
