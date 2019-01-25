@@ -10,15 +10,8 @@ import io
 import random
 import sys
 import json
-import paho.mqtt.client as mqtt
-import toml
 
 from snips_garuda import Garuda
-
-
-# These will be overwritten by /etc/snips.toml content
-MQTT_HOST = 'localhost'
-MQTT_PORT = 1883
 
 CONFIGURATION_ENCODING_FORMAT = "utf-8"
 CONFIG_INI = "config.ini"
