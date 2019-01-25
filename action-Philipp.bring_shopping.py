@@ -10,6 +10,15 @@ import io
 import random
 import sys
 import json
+import paho.mqtt.client as mqtt
+import toml
+
+from snips_garuda import Garuda
+
+
+# These will be overwritten by /etc/snips.toml content
+MQTT_HOST = 'localhost'
+MQTT_PORT = 1883
 
 CONFIGURATION_ENCODING_FORMAT = "utf-8"
 CONFIG_INI = "config.ini"
@@ -29,15 +38,17 @@ def read_configuration_file(configuration_file):
         return dict()
 
 
-def subscribe_intent_callback(hermes, intentMessage):
-    if intentMessage.intent.intent_name == i18n.INTENT_ADD_ITEM:
-        hermes.publish_end_session(intentMessage.session_id, add_item(intentMessage,conf))
-    elif intentMessage.intent.intent_name == i18n.INTENT_DEL_ITEM:
-        hermes.publish_end_session(intentMessage.session_id, delete_item(intentMessage,conf))
-    elif intentMessage.intent.intent_name == i18n.INTENT_READ_LIST:
-        hermes.publish_end_session(intentMessage.session_id, read_list(conf))
-    elif intentMessage.intent.intent_name == i18n.INTENT_CHECK_LIST:
-        hermes.publish_end_session(intentMessage.session_id, check_list(intentMessage,conf))
+def subscribe_intent_callback(client, userdata, msg):
+    payload = json.loads(msg.payload)
+    conf = read_configuration_file(CONFIG_INI)
+    if msg.topic == i18n.INTENT_ADD_ITEM:
+        garuda.publish_end_session(payload["sessionId"], add_item(payload,conf))
+    elif msg.topic == i18n.INTENT_DEL_ITEM:
+        garuda.publish_end_session(payload["sessionId"], delete_item(payload,conf))
+    elif msg.topic == i18n.INTENT_READ_LIST:
+        garuda.publish_end_session(payload["sessionId"], read_list(conf))
+    elif msg.topic == i18n.INTENT_CHECK_LIST:
+        garuda.publish_end_session(payload["sessionId"], check_list(payload,conf))
       
 def get_bring(conf):
     return BringApi(conf['secret']['uuid'],conf['secret']['bringlistuuid'])
@@ -48,11 +59,11 @@ def add_item_int(bring, items):
     added = []
     exist = []
     for item in items:
-        if not any(entr['name'] == item.value for entr in list):
-            bring.purchase_item(item.value, "")
-            added.append(item.value)
+        if not any(entr['name'] == item for entr in list):
+            bring.purchase_item(item, "")
+            added.append(item)
         else:
-            exist.append(item.value)
+            exist.append(item)
     return added, exist
 
 def delete_item_int(bring, items):
@@ -60,11 +71,11 @@ def delete_item_int(bring, items):
     removed = []
     exist = []
     for item in items:
-        if any(entr['name'] == item.value for entr in list):
-            bring.recent_item(item.value)
-            removed.append(item.value)
+        if any(entr['name'] == item for entr in list):
+            bring.recent_item(item)
+            removed.append(item)
         else:
-            exist.append(item.value)
+            exist.append(item)
     return removed, exist
 
 def check_list_int(bring,check):
@@ -72,34 +83,37 @@ def check_list_int(bring,check):
     found = []
     missing = []
     for c in check:
-        if any(c.value == entr['name'] for entr in list):
-            found.append(c.value)
+        if any(c == entr['name'] for entr in list):
+            found.append(c)
         else:
-            missing.append(c.value)
+            missing.append(c)
     return found, missing
 
 
 ### INTENTS ###
 ## Add item to list
-def add_item(intentMessage,conf):
-    if len(intentMessage.slots.Item) > 0:
-        added, exist = add_item_int(get_bring(conf), intentMessage.slots.Item.all())
+def add_item(payload,conf):
+    items = garuda.get_slot(payload, "Item")
+    if len(items) > 0:
+        added, exist = add_item_int(get_bring(conf), items)
         return combine_lists(i18n.ADD, i18n.ADD_CONN, i18n.ADD_END, i18n.ADD_F, added, exist)
     else:
         return random.choice(i18n.ADD_WHAT)
 
 ## Delete items from list
-def delete_item(intentMessage,conf):
-    if len(intentMessage.slots.Item) > 0:
-        removed, failed = delete_item_int(get_bring(conf), intentMessage.slots.Item.all())
+def delete_item(payload,conf):
+    items = garuda.get_slot(payload, "Item")
+    if len(items) > 0:
+        removed, failed = delete_item_int(get_bring(conf), items)
         return combine_lists(i18n.REM, i18n.REM_CONN, i18n.REM_END, i18n.REM_F, removed, failed)
     else:
         return random.choice(i18n.REM_WHAT)
 
 ## check if item is in list
-def check_list(intentMessage,conf):
-    if len(intentMessage.slots.Item) > 0:
-        found, missing = check_list_int(get_bring(conf), intentMessage.slots.Item.all())
+def check_list(payload,conf):
+    items = garuda.get_slot(payload, "Item")
+    if len(items) > 0:
+        found, missing = check_list_int(get_bring(conf), items)
         return combine_lists(i18n.CHK, i18n.CHK_CONN, i18n.CHK_END, i18n.CHK_F, found, missing)
     else:
         return random.choice(i18n.CHK_WHAT)
@@ -108,7 +122,6 @@ def check_list(intentMessage,conf):
 def read_list(conf):
     items = get_bring(conf).get_items().json()['purchase']
     itemlist = [ l['name'] for l in items ]
-    print(itemlist)
     return get_text_for_list(i18n.READ, itemlist)
 
 
@@ -134,8 +147,6 @@ def combine_lists(str_first, str_conn, str_end, str_second, first, second):
 ### Combine entries of list into wrapper sentence
 def get_text_for_list(str,list):
     category, strout = get_default_list(list)
-    print(str)
-    print(category)
     return random.choice(str[category]).format(strout)
 
 ### Return if MULTI or ONE entry and creates list for multi ( XXX, XXX and XXX )
@@ -147,13 +158,23 @@ def get_default_list(items):
     else:
         return "NONE", ""
 
+def subscribe_topics(garuda):
+    garuda.subscribe(i18n.INTENT_ADD_ITEM, subscribe_intent_callback)
+    garuda.subscribe(i18n.INTENT_DEL_ITEM, subscribe_intent_callback)
+    garuda.subscribe(i18n.INTENT_READ_LIST, subscribe_intent_callback)
+    garuda.subscribe(i18n.INTENT_CHECK_LIST, subscribe_intent_callback)
+        
+
 if __name__ == "__main__":
     reload(sys)
     sys.setdefaultencoding('utf-8')
     conf = read_configuration_file(CONFIG_INI)
+    
     with open("/usr/share/snips/assistant/assistant.json") as json_file:
             language = json.load(json_file)["language"]
     i18n = importlib.import_module("translations." + language)
-
-    with Hermes("localhost:1883") as h:
-        h.subscribe_intents(subscribe_intent_callback).start()
+    
+    garuda = Garuda()
+    subscribe_topics(garuda) 
+    garuda.connect()
+    
