@@ -2,15 +2,15 @@
 # -*- coding: utf-8 -*-
 """
 Garuda (Sanskrit à¤—à¤°à¥�à¤¡ garuá¸�a, m.) ist in der indischen Mythologie ein 
-schlangentÃ¶tendes, halb mensch-, halb adlergestaltiges Reittier (Vahana) des Vishnu, 
+schlangentötendes, halb mensch-, halb adlergestaltiges Reittier (Vahana) des Vishnu, 
 Sohn des Kashyapa und der Vinata. 
-In der asiatischen Mythologie hat der Garuda zugleich die Bedeutung eines GÃ¶tterboten, 
-der den Menschen Nachrichten und Anweisungen der GÃ¶tter Ã¼berbringt.
+In der asiatischen Mythologie hat der Garuda zugleich die Bedeutung eines Götterboten, 
+der den Menschen Nachrichten und Anweisungen der Götter überbringt.
 
 --->
 
 Vereinfachte Form von Hermes.
-Weniger MÃ¶glichkeiten, dafÃ¼r wird aber mit Passwort UnterstÃ¼tzung!
+Weniger Möglichkeiten, dafür wird aber mit Passwort Unterstützung!
 """
 import io
 import sys
