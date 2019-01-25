@@ -5,10 +5,10 @@
 # Add inside of the brackets any possible sentence - but be aware: every combination might occure!
 ###
 ### Intents
-INTENT_ADD_ITEM = "Philipp:addItem_bringshop"
-INTENT_DEL_ITEM = "Philipp:deleteItem_bringshop"
-INTENT_READ_LIST = "Philipp:readList_bringshop"
-INTENT_CHECK_LIST = "Philipp:checkList_bringshop"
+INTENT_ADD_ITEM = "hermes/intent/Philipp:addItem_bringshop"
+INTENT_DEL_ITEM = "hermes/intent/Philipp:deleteItem_bringshop"
+INTENT_READ_LIST = "hermes/intent/Philipp:readList_bringshop"
+INTENT_CHECK_LIST = "hermes/intent/Philipp:checkList_bringshop"
 
 # {XXX, XXX, XXX} und XXX
 GENERAL_LIST = ["{first} und {last}",
