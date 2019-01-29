@@ -20,7 +20,7 @@ READ_ANY = ["You got {} on your shopping list",
             "There is {} on your shopping list"]
 ### Sentences that can fit only a single value
 READ_ONE = READ_ANY+["There is only {} on your shopping list",
-                     "{} is the only entrance on your shopping list",
+                     "{} is the only entry on your shopping list",
                      "There is nothing but {} on your shopping list"]
 ### Sentences that can fit a list (GENERAL_LIST)
 READ_MULTI = READ_ANY+["{} are on your shopping list"]
