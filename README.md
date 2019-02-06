@@ -4,7 +4,7 @@ Connect your SNIPS Assistant to your Bring! shopping list!
 With Bring! your list will be available on Android, iOs and via Web Access.
 ## Languages
 - German ✓
-- English ~ (translated, but not in store)
+- English ✓
 
 ## Featuers
 - Add Item(s) ✓
