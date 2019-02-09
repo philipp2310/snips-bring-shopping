@@ -30,7 +30,7 @@ def read_configuration_file(configuration_file):
 
 
 def subscribe_intent_callback(client, userdata, msg):
-    payload = json.loads(msg.payload)
+    payload = json.loads(msg.payload.decode())
     conf = read_configuration_file(CONFIG_INI)
     if msg.topic == i18n.INTENT_ADD_ITEM:
         garuda.publish_end_session(payload["sessionId"], add_item(payload,conf))
