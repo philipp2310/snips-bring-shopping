@@ -159,8 +159,6 @@ def subscribe_topics(garuda):
         
 
 if __name__ == "__main__":
-    reload(sys)
-    sys.setdefaultencoding('utf-8')
     conf = read_configuration_file(CONFIG_INI)
     
     with open("/usr/share/snips/assistant/assistant.json") as json_file:
