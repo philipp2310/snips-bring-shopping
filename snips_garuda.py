@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
 Garuda (Sanskrit à¤—à¤°à¥�à¤¡ garuá¸�a, m.) ist in der indischen Mythologie ein 
@@ -76,12 +76,16 @@ class Garuda():
         
         self.client = mqtt.Client()
         self.client.on_connect = self.subscribe_topics
-                
-        with open("/etc/snips.toml") as toml_file:
-            snips_toml = toml.load(toml_file)
         
-        if 'snips-common' in snips_toml:
-            self.set_password(snips_toml)
-            self.get_host(snips_toml)
+        try:        
+            with open("/etc/snips.toml") as toml_file:
+                snips_toml = toml.load(toml_file)
+        
+            if 'snips-common' in snips_toml:
+                self.set_password(snips_toml)
+                self.get_host(snips_toml) 
+            
+        except toml.decoder.TomlDecodeError:
+            print("Decoding TOML did not work. Using defaults localhost:1883")
                     
         
