@@ -26,9 +26,4 @@ then
 
 else
     >&2 echo "Cannot find Python 3. Please install it."
-fi
-
-if [ ! -f ./.favs ]; then
-    touch .favs
-    sudo chown _snips-skills .favs
-fi
+fi 
