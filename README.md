@@ -11,6 +11,7 @@ With Bring! your list will be available on Android, iOs and via Web Access.
 - Remove Item(s) ✓
 - Read shopping List ✓
 - Ask for Item on List ✓
+- Delete complete List with confirmation ✓
 
 ## Future Ideas:
 - Change Quantity

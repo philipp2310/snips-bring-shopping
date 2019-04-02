@@ -40,11 +40,23 @@ def subscribe_intent_callback(client, userdata, msg):
         garuda.publish_end_session(payload["sessionId"], read_list(conf))
     elif msg.topic == i18n.INTENT_CHECK_LIST:
         garuda.publish_end_session(payload["sessionId"], check_list(payload,conf))
+    elif msg.topic == i18n.INTENT_DEL_LIST:
+        garuda.publish_continue_session(payload["sessionId"], random.choice(i18n.CHK_DEL_ALL), [i18n.INTENT_CONF_DEL[14:],i18n.INTENT_NOCONF_DEL[14:]])
+    elif msg.topic == i18n.INTENT_CONF_DEL:
+        garuda.publish_end_session(payload["sessionId"], delete_complete_list(conf))
+    elif msg.topic == i18n.INTENT_NOCONF_DEL:
+        garuda.publish_end_session(payload["sessionId"], random.choice(i18n.NODEL_ALL))
       
 def get_bring(conf):
     return BringApi(conf['secret']['uuid'],conf['secret']['bringlistuuid'])
 
-
+def delete_complete_list(conf):
+    bring = get_bring(conf)
+    items = bring.get_items().json()['purchase']
+    for item in items:
+        bring.recent_item(item['name'])
+    return random.choice(i18n.DEL_ALL)
+    
 def add_item_int(bring, items):
     list = bring.get_items().json()['purchase']
     added = []
@@ -154,6 +166,9 @@ def subscribe_topics(garuda):
     garuda.subscribe(i18n.INTENT_DEL_ITEM, subscribe_intent_callback)
     garuda.subscribe(i18n.INTENT_READ_LIST, subscribe_intent_callback)
     garuda.subscribe(i18n.INTENT_CHECK_LIST, subscribe_intent_callback)
+    garuda.subscribe(i18n.INTENT_DEL_LIST, subscribe_intent_callback)
+    garuda.subscribe(i18n.INTENT_CONF_DEL, subscribe_intent_callback)
+    garuda.subscribe(i18n.INTENT_NOCONF_DEL, subscribe_intent_callback)
         
 
 if __name__ == "__main__":

@@ -41,8 +41,8 @@ class Garuda():
     def publish_end_session(self, sessid, text):
         self.client.publish(DM_END_SESSION, json.dumps({'text': text, 'sessionId': sessid}))
 
-    def publish_continue_session(self, sessid, text):
-        self.client.publish(DM_CONTINUE_SESSION, json.dumps({'text': text, 'sessionId': sessid}))
+    def publish_continue_session(self, sessid, text, intentFilter=""):
+        self.client.publish(DM_CONTINUE_SESSION, json.dumps({'text': text, 'sessionId': sessid, 'intentFilter' : intentFilter}))
     
     def set_password(self, snips_toml):
         if 'mqtt_username' in snips_toml['snips-common'] and 'mqtt_password' in snips_toml['snips-common']:

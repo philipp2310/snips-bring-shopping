@@ -9,6 +9,9 @@ INTENT_ADD_ITEM = "hermes/intent/Philipp:addItem_bringshop"
 INTENT_DEL_ITEM = "hermes/intent/Philipp:deleteItem_bringshop"
 INTENT_READ_LIST = "hermes/intent/Philipp:readList_bringshop"
 INTENT_CHECK_LIST = "hermes/intent/Philipp:checkList_bringshop"
+INTENT_DEL_LIST = "hermes/intent/Philipp:deleteList_bringshop"
+INTENT_CONF_DEL = "hermes/intent/Philipp:confDelList_bringshop"
+INTENT_NOCONF_DEL = "hermes/intent/Philipp:NOconfDelList_bringshop"
 
 # {XXX, XXX, XXX} und XXX
 GENERAL_LIST = ["{first} and {last}"]
@@ -112,6 +115,19 @@ CHK_F_MULTI = CHK_F_ANY+["{} are not on your shopping list."]
 ### fallback - should not happen
 CHK_WHAT = ["I don't know what I should look for on your shopping list"]
 
+### delete complete list
+DEL_ALL = ["I deleted your shopping list",
+           "Your shopping list was completed."]
+
+
+### don't delete
+NODEL_ALL = ["close one!",
+           "Don't worry, I'll keep your list."]
+
+### sure to delete all?
+CHK_DEL_ALL = ["Are you sure to delete the complete shopping list?",
+               "Should I really clear the complete shopping list",
+               "Please confirm: Delete complete shopping list"]
 
 ### DON'T EDIT!
 #Only for technical purpose!

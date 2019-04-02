@@ -9,6 +9,10 @@ INTENT_ADD_ITEM = "hermes/intent/Philipp:addItem_bringshop"
 INTENT_DEL_ITEM = "hermes/intent/Philipp:deleteItem_bringshop"
 INTENT_READ_LIST = "hermes/intent/Philipp:readList_bringshop"
 INTENT_CHECK_LIST = "hermes/intent/Philipp:checkList_bringshop"
+INTENT_DEL_LIST = "hermes/intent/Philipp:deleteList_bringshop"
+INTENT_CONF_DEL = "hermes/intent/Philipp:confDelList_bringshop"
+INTENT_NOCONF_DEL = "hermes/intent/Philipp:NOconfDelList_bringshop"
+
 
 # {XXX, XXX, XXX} und XXX
 GENERAL_LIST = ["{first} und {last}",
@@ -117,6 +121,19 @@ CHK_F_MULTI = CHK_F_ANY+["{} stehen nicht auf der Einkaufsliste.",
 CHK_WHAT = ["Ich weiß nicht was ich auf der Einkaufsliste suchen soll.",
             "Ich weiß nicht was ich auf dem Zettel suchen soll."]
 
+### delete complete list
+DEL_ALL = ["Ich habe die komplette Einkaufsliste gelöscht.",
+           "Deine Einkaufsliste wurde geleert."]
+
+### don't delete
+NODEL_ALL = ["Das war knapp! Fast hätte ich die Liste gelöscht",
+             "Ok, ich lösche nichts",
+             "Keine Sorge, ich merke mir alles was du einkaufen musst!"]
+
+### sure to delete all?
+CHK_DEL_ALL = ["Bist du dir sicher, dass ich die komplette Einkaufsliste löschen soll?",
+               "Soll ich wirklich die ganze Liste löschen?",
+               "Bitte bestätige: komplette Liste löschen?"]
 
 ### DON'T EDIT!
 #Only for technical purpose!
