@@ -38,7 +38,9 @@ READ_NONE = ["Du hast nichts auf deiner Einkaufsliste",
 ### Add items
 ### Sentences that can fit a list (GENERAL_LIST) or a single value
 ADD_ANY = ["Ok, ich schreibe {} auf den Einkaufszettel",
-           "Ich habe {} auf den Einkaufszettel geschrieb"]
+           "Ich habe {} auf den Einkaufszettel geschrieben",
+           "Ich habe {} hinzugefügt", 
+           "Ich schreibe {} auf die Einkaufsliste"]
 ### Sentences that can fit only a single value
 ADD_ONE = ADD_ANY + ["{} wurde auf die Einkaufsliste geschrieben",
                      "{} wurde hinzugefügt"]
@@ -56,15 +58,23 @@ ADD_CONN = ["{} , aber {}"]
 ADD_F_ANY = ["{} steht schon auf der Liste"]
 ### Sentences that can fit only a single value
 ADD_F_ONE = ADD_F_ANY+["{} ist bereits vorhanden",
+                       "{} ist bereits notiert",
                        "{} steht schon auf der Liste"]
 ### Sentences that can fit a list (GENERAL_LIST)
 ADD_F_MULTI = ADD_F_ANY+["{} sind bereits vorhanden",
                          "{} standen schon auf der Liste",
+                         "{} stehen schon auf der Liste",
+                         "{} standen schon auf deiner Liste",
+                         "{} stehen schon auf deiner Liste",
+                         "{} standen schon auf der Einkaufsliste",
+                         "{} stehen schon auf der Einkaufsliste",
+                         "{} standen schon auf deiner Einkaufsliste",
                          "{} stehen schon auf deiner Einkaufsliste"]
 
 ### fallback - should not happen
 ADD_WHAT = ["Ich weiß nicht was ich auf die Einkaufsliste schreiben soll",
-            "Ich habe nichts auf den Einkaufszettel geschrieben"]
+            "Ich habe nichts auf den Einkaufszettel geschrieben",
+            "Ich habe dich nicht verstanden und daher nichts notiert"]
 
 
 ### Remove Items
@@ -91,7 +101,8 @@ REM_F_ONE = REM_F_ANY+["{} stand nicht auf der Liste."]
 REM_F_MULTI = REM_F_ANY+["{} standen nicht auf der Einkaufsliste."]
 ### fallback - should not happen
 REM_WHAT = ["Ich weiß nicht was ich von der Einkaufsliste streichen soll.",
-            "Ich habe nichts vom Einkaufszettel gelöscht."]
+            "Ich habe nichts vom Einkaufszettel gelöscht.",
+            "ICh habe dich nicht verstanden und daher nichts gelöscht."]
 
 
 ### Check Items
@@ -119,7 +130,8 @@ CHK_F_MULTI = CHK_F_ANY+["{} stehen nicht auf der Einkaufsliste.",
                          "{} stehen nicht auf deinem Einkaufszettel"]
 ### fallback - should not happen
 CHK_WHAT = ["Ich weiß nicht was ich auf der Einkaufsliste suchen soll.",
-            "Ich weiß nicht was ich auf dem Zettel suchen soll."]
+            "Ich weiß nicht was ich auf dem Zettel suchen soll.",
+            "Ich habe dich nicht verstanden und weiß daher nicht was ich suchen soll."]
 
 ### delete complete list
 DEL_ALL = ["Ich habe die komplette Einkaufsliste gelöscht.",
