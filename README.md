@@ -20,8 +20,7 @@ With Bring! your list will be available on Android, iOs and via Web Access.
 
 ## Setup
 This skill for SNIPS takes two secret parameters:
-The first one is your unique user ID, the second one is the unique ID of your shopping list.
-You can get these here after you fill in your credentials: https://api.getbring.com/rest/bringlists?email=~mail-adress~&password=~password~
+The first one is the email adress and the second one is the password of your bring shopping list.
 
 ## Usage
 ### Deutsch:
