@@ -48,7 +48,10 @@ def subscribe_intent_callback(client, userdata, msg):
         garuda.publish_end_session(payload["sessionId"], random.choice(i18n.NODEL_ALL))
       
 def get_bring(conf):
-    return BringApi(conf['secret']['uuid'],conf['secret']['bringlistuuid'])
+    try:
+        return BringApi(conf['secret']['email'],conf['secret']['password'], use_login=True)
+    except BringApi.AuthentificationFailed as e:
+        print(str(e))
 
 def delete_complete_list(conf):
     bring = get_bring(conf)
