@@ -1,3 +1,6 @@
+Continued as module for Project Alice
+https://github.com/philipp2310/ProjectAliceModules/tree/master/PublishedModules/philipp2310/BringShoppingList
+
 # SNIPS Bring! Shopping List
 
 Connect your SNIPS Assistant to your Bring! shopping list!
