@@ -1,5 +1,5 @@
 # Bindings for the hermes protocol 
-BringApi
+BringApi==0.0.3
 requests
 paho-mqtt
 toml
