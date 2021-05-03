@@ -1,5 +1,5 @@
 Continued as module for Project Alice
-https://github.com/philipp2310/ProjectAliceModules/tree/master/PublishedModules/philipp2310/BringShoppingList
+https://github.com/project-alice-assistant/skill_BringShoppingList
 
 # SNIPS Bring! Shopping List
 
